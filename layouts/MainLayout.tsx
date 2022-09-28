@@ -4,6 +4,7 @@ import "antd/dist/antd.css"
 import { Layout } from 'antd';
 import React from 'react';
 import Link from 'next/link';
+import Player from '@/components/Player';
 const { Header, Content } = Layout;
 
 type Props = {
@@ -43,7 +44,7 @@ const MainLayout: React.FC<Props> = ({ children }) => {
          </Content>
 
       </div>
-
+      <Player />
    </Layout>
 }
 
