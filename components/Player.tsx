@@ -1,10 +1,14 @@
 import { CaretRightFilled, PauseCircleFilled, SoundFilled } from "@ant-design/icons"
 import { Button, Col, Row, Typography } from "antd"
+import { useAppDispatch, useAppSelector } from "hooks/redux"
+import { playerSlice } from "store/reducers/playerSlice"
 import s from '../styles/Player.module.scss'
 import TrackProgress from "./TrackProgress"
 
 const Player: React.FC = () => {
-   const active = true
+   const dispatch = useAppDispatch()
+   const { active, currentTime, duration, pause, volume } = useAppSelector(state => state.player)
+   const { pauseTrack, playTrack, setActiveTrack, setCurrentTime, setDuration, setVolume } = playerSlice.actions
    const track = {
       _id: '1',
       artist: 'artist',
@@ -19,6 +23,18 @@ const Player: React.FC = () => {
          { _id: '134', username: 'user3', text: 'dfgdfgdfg sondfgfdgdfgdfgdfgdfgdfgdfgg' },
       ]
    }
+
+   const play = () => {
+      // e.stopPropagation()
+      console.log('click');
+
+      if (pause) {
+         dispatch(playTrack())
+      } else {
+         dispatch(pauseTrack())
+      }
+   }
+
    return (<div className={s.player} >
       <div className="container">
          <Row align="middle" justify="space-between" style={{ width: 920 }}>
@@ -27,12 +43,12 @@ const Player: React.FC = () => {
                   <Col style={{ marginRight: 10 }}>
                      <Button shape="circle"
                         icon={
-                           !active
+                           !pause
                               ? <CaretRightFilled />
                               : <PauseCircleFilled />
                         }
                         className={s.btn}
-                        onClick={(e) => e.stopPropagation()}
+                        onClick={() => play()}
                      />
                   </Col>
                   <Col>

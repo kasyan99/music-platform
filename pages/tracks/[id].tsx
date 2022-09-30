@@ -1,10 +1,7 @@
 import TrackPage from "@/components/TrackPage"
-import { Button, Card, Col, Form, Input, Radio, Row, Typography } from "antd"
 import MainLayout from "layouts/MainLayout"
-import { useRouter } from "next/router"
 
 const TrackPageT: React.FC = () => {
-
    const track = {
       _id: '1',
       artist: 'artist',
