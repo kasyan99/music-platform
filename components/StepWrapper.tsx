@@ -49,7 +49,7 @@ const StepWrapper: React.FC<Props> = ({ firstContent, secondContent, thirdConten
       </div>
       <div className="steps-action">
         {current < steps.length - 1 && (
-          <Button type="primary" onClick={() => next()}>
+          <Button data-testid='nextBtn' type="primary" onClick={() => next()}>
             Next
           </Button>
         )}

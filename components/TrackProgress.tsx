@@ -13,6 +13,7 @@ const TrackProgress: React.FC<Props> = ({ left, right, onChange }) => {
             max={right}
             value={left}
             onChange={onChange}
+            data-testid='progress'
          />
          <div>{left}/{right}</div>
       </div>
