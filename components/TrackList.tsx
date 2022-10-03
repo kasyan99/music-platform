@@ -9,7 +9,7 @@ type Props = {
 const TrackList: React.FC<Props> = ({ tracks }) => {
    return (
       <Row>
-         {tracks.map(track =>
+         {tracks && tracks.map(track =>
             <TrackItem
                key={track._id}
                track={track}
