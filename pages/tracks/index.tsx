@@ -3,9 +3,7 @@ import { Button, Card, Col, Row, Typography } from "antd"
 import MainLayout from "layouts/MainLayout"
 import { useRouter } from "next/router"
 import { useEffect } from "react"
-import { userAPI } from "services/UserService"
-
-import { ITrack } from "types/track"
+import { trackAPI } from "services/TrackService"
 
 const TracksPage: React.FC = () => {
    const router = useRouter()
@@ -48,7 +46,7 @@ const TracksPage: React.FC = () => {
    //       ]
    //    },
    // ]
-   const { data: tracks } = userAPI.useFetchAllTracksQuery('')
+   const { data: tracks } = trackAPI.useFetchAllTracksQuery('')
 
    console.log(tracks);
 

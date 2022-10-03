@@ -1,19 +1,19 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import { curryGetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware"
 import { createWrapper, MakeStore } from "next-redux-wrapper"
-import { userAPI } from "services/UserService"
+import { trackAPI } from "services/TrackService"
 import { playerReducer } from "./reducers/playerSlice"
 
 export const rootReducer = combineReducers({
   player: playerReducer,
-  [userAPI.reducerPath]: userAPI.reducer,
+  [trackAPI.reducerPath]: trackAPI.reducer,
 })
 
 export const setupStore = () => {
   return configureStore({
     reducer: rootReducer,
     middleware: (curryGetDefaultMiddleware) =>
-      curryGetDefaultMiddleware().concat(userAPI.middleware),
+      curryGetDefaultMiddleware().concat(trackAPI.middleware),
   })
 }
 
