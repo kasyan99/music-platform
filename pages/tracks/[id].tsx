@@ -10,7 +10,10 @@ type Props = {
 
 const TrackPageT: React.FC<Props> = ({ track }) => {
    return (
-      <MainLayout>
+      <MainLayout
+         title={'Music platform' + track.name + track.artist}
+         keywords={`Music, artist, ${track.name}, ${track.artist}`}
+      >
          <TrackPage track={track} />
       </MainLayout >
    )

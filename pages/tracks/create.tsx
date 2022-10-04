@@ -36,7 +36,7 @@ const TrackCreate: React.FC = () => {
 
    }
 
-   return <MainLayout>
+   return <MainLayout title="Music platform - create track">
       <Card style={{ width: 920 }}>
          <StepWrapper
             firstContent={<TrackInfo name={name} artist={artist} text={text} />}

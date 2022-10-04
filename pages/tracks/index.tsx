@@ -11,7 +11,7 @@ const TracksPage: React.FC = () => {
    const { data: tracks } = trackAPI.useFetchAllTracksQuery('')
 
    return (
-      <MainLayout>
+      <MainLayout title="Music platform - tracks">
          <>
             <Card title={
                <Row>
