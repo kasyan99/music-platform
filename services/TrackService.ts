@@ -1,4 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react"
+import { IComment, ITrack } from "types/track"
+
+type CommentBody = {
+  username: string
+  text: string
+  trackId: string
+}
 
 export const trackAPI = createApi({
   reducerPath: "trackAPI",
@@ -9,6 +16,20 @@ export const trackAPI = createApi({
     fetchAllTracks: build.query({
       query: () => ({
         url: "tracks",
+      }),
+    }),
+    createComment: build.mutation<IComment, CommentBody>({
+      query: (commentBody: CommentBody) => ({
+        url: "tracks/comment",
+        method: "POST",
+        body: commentBody,
+      }),
+    }),
+    createTrack: build.mutation({
+      query: (formData: FormData) => ({
+        url: "tracks",
+        method: "POST",
+        body: formData,
       }),
     }),
   }),

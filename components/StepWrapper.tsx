@@ -6,10 +6,11 @@ type Props = {
   firstContent: JSX.Element
   secondContent: JSX.Element
   thirdContent: JSX.Element
+  onSubmit: () => void
 }
 
 
-const StepWrapper: React.FC<Props> = ({ firstContent, secondContent, thirdContent }) => {
+const StepWrapper: React.FC<Props> = ({ firstContent, secondContent, thirdContent, onSubmit }) => {
   const steps = [
     {
       title: 'Track info',
@@ -54,7 +55,7 @@ const StepWrapper: React.FC<Props> = ({ firstContent, secondContent, thirdConten
           </Button>
         )}
         {current === steps.length - 1 && (
-          <Button type="primary" onClick={() => message.success('Processing complete!')}>
+          <Button type="primary" onClick={() => onSubmit()}>
             Done
           </Button>
         )}
