@@ -19,9 +19,8 @@ const TrackPage: React.FC<Props> = ({ track: serverTrack }) => {
 
    const username = useInput('')
    const commentText = useInput('')
-   console.log(router.query);
 
-   const [createComment, { }] = trackAPI.useCreateCommentMutation()
+   const [createComment, { data }] = trackAPI.useCreateCommentMutation()
 
    const addComment = async () => {
       const comment = {
@@ -30,15 +29,16 @@ const TrackPage: React.FC<Props> = ({ track: serverTrack }) => {
          trackId: track._id
       }
 
-      await createComment(comment).then((res) => {
-         // @ts-ignore
-         if (res.data) {
-            // @ts-ignore
-            setTrack({ ...track, comments: [...track.comments, res.data as IComment] })
-         }
-
-      })
+      await createComment(comment)
    }
+
+   useEffect(() => {
+      //to rerender page after add comment
+      if (data) {
+         setTrack({ ...track, comments: [...track.comments, data as IComment] })
+      }
+
+   }, [data])
 
    return (
       <div style={{ minWidth: 700 }}>

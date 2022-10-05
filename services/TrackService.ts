@@ -18,6 +18,14 @@ export const trackAPI = createApi({
         url: "tracks",
       }),
     }),
+    searchTracks: build.query({
+      query: (query: string) => ({
+        url: "tracks/search",
+        params: {
+          query,
+        },
+      }),
+    }),
     createComment: build.mutation<IComment, CommentBody>({
       query: (commentBody: CommentBody) => ({
         url: "tracks/comment",

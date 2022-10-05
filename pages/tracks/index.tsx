@@ -1,14 +1,32 @@
 import TrackList from "@/components/TrackList"
-import { Button, Card, Col, Row, Typography } from "antd"
+import { Button, Card, Col, Input, Row, Typography } from "antd"
+import useDebounce from "hooks/useDebounce"
 import MainLayout from "layouts/MainLayout"
 import { useRouter } from "next/router"
-import { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { trackAPI } from "services/TrackService"
+import { ITrack } from "types/track"
 
 const TracksPage: React.FC = () => {
    const router = useRouter()
-
    const { data: tracks } = trackAPI.useFetchAllTracksQuery('')
+   const [actualTracks, setActualTracks] = useState<ITrack[]>(tracks)
+
+
+   const [query, setQuery] = useState('')
+   const { data: searchedTracks } = trackAPI.useSearchTracksQuery(query)
+
+   //use debounce to prevent request on every change
+   const debouncedQuery = useDebounce(query, 500)
+
+   const search = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const query = e.target.value
+      setQuery(query)
+   }
+
+   useEffect(() => {
+      setActualTracks(searchedTracks)
+   }, [debouncedQuery])
 
    return (
       <MainLayout title="Music platform - tracks">
@@ -23,7 +41,11 @@ const TracksPage: React.FC = () => {
             }
                bordered={false} style={{ width: 900 }}
             >
-               <TrackList tracks={tracks} />
+               <Input
+                  value={query}
+                  onChange={search}
+               />
+               <TrackList tracks={actualTracks} />
             </Card>
          </>
       </MainLayout>
