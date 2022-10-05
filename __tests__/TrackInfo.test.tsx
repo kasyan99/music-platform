@@ -2,10 +2,11 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import TrackInfo from '@/components/stepsContent/TrackInfo'
 
+
 describe('track info form', () => {
 
    it('input should contain value aftep typing', async () => {
-      render(<TrackInfo />)
+      render(<TrackInfo name={{}} artist={{}} text={{}} />)
 
       const input = screen.getByTestId('track name input')
 

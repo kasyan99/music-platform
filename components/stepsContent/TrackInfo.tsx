@@ -3,9 +3,9 @@ import { UseInputResult } from "hooks/useInput";
 import { ChangeEvent } from "react";
 
 type Props = {
-   name: UseInputResult
-   artist: UseInputResult
-   text: UseInputResult
+   name: UseInputResult | {}
+   artist: UseInputResult | {}
+   text: UseInputResult | {}
 }
 
 const TrackInfo: React.FC<Props> = ({ name, artist, text }) => {
