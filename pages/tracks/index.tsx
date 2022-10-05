@@ -9,9 +9,8 @@ import { ITrack } from "types/track"
 
 const TracksPage: React.FC = () => {
    const router = useRouter()
-   const { data: tracks } = trackAPI.useFetchAllTracksQuery('')
+   const { data: tracks, refetch } = trackAPI.useFetchAllTracksQuery('')
    const [actualTracks, setActualTracks] = useState<ITrack[]>(tracks)
-
 
    const [query, setQuery] = useState('')
    const { data: searchedTracks } = trackAPI.useSearchTracksQuery(query)
@@ -28,6 +27,15 @@ const TracksPage: React.FC = () => {
       setActualTracks(searchedTracks)
    }, [debouncedQuery])
 
+   useEffect(() => {
+      setActualTracks(tracks)
+   }, [tracks])
+
+   //to apdate trackss list after create new track
+   useEffect(() => {
+      refetch()
+   }, [])
+
    return (
       <MainLayout title="Music platform - tracks">
          <>
@@ -39,7 +47,7 @@ const TracksPage: React.FC = () => {
                   </Col>
                </Row>
             }
-               bordered={false} style={{ width: 900 }}
+               bordered={false}
             >
                <Input
                   value={query}

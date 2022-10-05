@@ -1,5 +1,6 @@
 import { Button, Card, message, Steps } from 'antd';
 import React, { useState } from 'react';
+import s from '../styles/create.module.scss'
 const { Step } = Steps;
 
 type Props = {
@@ -38,9 +39,9 @@ const StepWrapper: React.FC<Props> = ({ firstContent, secondContent, thirdConten
 
   return (
     <>
-      <Steps current={current}>
+      <Steps current={current} className={s.label}>
         {steps.map((item) => (
-          <Step key={item.title} title={item.title} />
+          <Step key={item.title} title={item.title} className={s.label} />
         ))}
       </Steps>
       <div className="steps-content" style={{ margin: '24px 0' }}>

@@ -1,6 +1,6 @@
 import { Card } from "antd"
 import { ChangeEvent, useRef, useState } from "react"
-
+import s from '../../styles/FileUpload.module.scss'
 type Props = {
    file: File | null
    setFile: Function
@@ -19,17 +19,24 @@ const AudioUpload: React.FC<Props> = ({ setFile, accept, file }) => {
 
    return (
       <div
-         style={{ position: 'relative', height: 400, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+         // style={{ position: 'relative', height: 400, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+         className={s.root}
       >
          <input
             type='file'
             accept={accept}
-            style={{ position: 'absolute', top: 0, left: 0, opacity: 0, width: '100%', height: '100%', zIndex: 99, cursor: 'pointer' }}
+            // style={{ position: 'absolute', top: 0, left: 0, opacity: 0, width: '100%', height: '100%', zIndex: 99, cursor: 'pointer' }}
             onChange={(e) => pickFile(e)}
          />
          {!file &&
-            <Card style={{ border: '2px solid rgba(0,0,0,0.3)', height: '50%', width: '50%', backgroundColor: '#fafafa', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-               <div style={{ fontSize: '36px', opacity: '0.5' }}>
+            <Card
+               // style={{ border: '2px solid rgba(0,0,0,0.3)', height: '50%', width: '50%', backgroundColor: '#fafafa', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+               className={s.dragAndDrop}
+            >
+               <div
+                  // style={{ fontSize: '36px', opacity: '0.5' }}
+                  className={s.text}
+               >
                   Click or drag file
                </div>
             </Card>

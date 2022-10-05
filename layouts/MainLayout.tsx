@@ -38,11 +38,11 @@ const MainLayout: React.FC<Props> = ({ children, title, description, keywords })
                      },
                      {
                         key: Date.now() + Math.random(),
-                        label: <Link href={'tracks'}>Tracks</Link>
+                        label: <Link href={'/tracks'}>Tracks</Link>
                      },
                      {
                         key: Date.now() + Math.random(),
-                        label: <Link href={'albums'}>Albums</Link>
+                        label: <Link href={'/albums'}>Albums</Link>
                      },
                   ]
                   }

@@ -1,11 +1,9 @@
 import { Button, Card, Col, Form, Input, Row, Typography } from "antd"
-import axios from "axios"
 import { useInput } from "hooks/useInput"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { trackAPI } from "services/TrackService"
 import { IComment, ITrack } from "types/track"
-
 
 type Props = {
    track: ITrack
@@ -41,7 +39,7 @@ const TrackPage: React.FC<Props> = ({ track: serverTrack }) => {
    }, [data])
 
    return (
-      <div style={{ minWidth: 700 }}>
+      <div>
          <Button onClick={() => router.push('/tracks')} style={{ marginBottom: 10 }}>To list</Button>
          <Card>
             <Typography.Title level={2}>Info</Typography.Title>

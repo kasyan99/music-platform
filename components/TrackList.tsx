@@ -1,4 +1,4 @@
-import { Col, Row } from "antd"
+import { Row } from "antd"
 import axios from "axios"
 import { GetServerSideProps, NextPage } from "next"
 import { ITrack } from "types/track"
@@ -21,12 +21,6 @@ const TrackList: NextPage<Props> = ({ tracks }) => {
 }
 
 export default TrackList
-
-// TrackList.getInitialProps = async () => {
-//    const res = await fetch('https://music-platform-api.herokuapp.com/tracks')
-//    const json = await res.json()
-//    return { tracks: json.stargazers_count }
-// }
 
 export const getServerSideProps: GetServerSideProps = async () => {
    const res = await axios.get('https://music-platform-api.herokuapp.com/tracks')
