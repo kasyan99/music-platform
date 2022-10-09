@@ -9,9 +9,13 @@ export const useInput = (initialValue: string) => {
     setValue(e.target.value)
   }
 
+  const clearValue = () => {
+    setValue("")
+  }
   return {
     value,
     onChange,
+    clearValue,
   }
 }
 

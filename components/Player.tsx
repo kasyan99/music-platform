@@ -3,6 +3,7 @@ import { Button, Col, Row, Typography } from "antd"
 import { useAppDispatch, useAppSelector } from "hooks/redux"
 import React, { useEffect } from "react"
 import { playerSlice } from "store/reducers/playerSlice"
+import { checkSrc } from "utils/checkSrc"
 import s from '../styles/Player.module.scss'
 import TrackProgress from "./TrackProgress"
 
@@ -39,7 +40,11 @@ const Player: React.FC = () => {
 
    const initAudio = () => {
       if (active) {
-         audio.src = 'https://music-platform-api.herokuapp.com/' + active.audio
+         // audio.src = 'https://music-platform-api.herokuapp.com/' + active.audio
+
+         {/*api is deploed on heroku, so static folder(with pictures and audio) is cleared after short time*/ }
+         {/*so, I add to db outer links to demonstrate how player works*/ }
+         audio.src = checkSrc(active.audio)
          audio.volume = volume / 100
          audio.onloadedmetadata = () => {
             dispatch(setDuration(audio.duration))
@@ -108,10 +113,6 @@ const Player: React.FC = () => {
                <SoundFilled style={{ marginRight: 5 }} />
                <TrackProgress left={volume} right={100} onChange={changeVolume} />
             </div>
-            {/* 
-            <Col>
-               {active && <span>02:42/03:22</span>}
-            </Col> */}
          </Row>
       </div>
    </div>)

@@ -1,3 +1,4 @@
+import Loader from "@/components/Loader"
 import TrackList from "@/components/TrackList"
 import { Button, Card, Col, Input, Row, Typography } from "antd"
 import useDebounce from "hooks/useDebounce"
@@ -9,11 +10,11 @@ import { ITrack } from "types/track"
 
 const TracksPage: React.FC = () => {
    const router = useRouter()
-   const { data: tracks, refetch } = trackAPI.useFetchAllTracksQuery('')
+   const { data: tracks, refetch, isFetching: isTracksFetching } = trackAPI.useFetchAllTracksQuery('')
    const [actualTracks, setActualTracks] = useState<ITrack[]>(tracks)
 
    const [query, setQuery] = useState('')
-   const { data: searchedTracks } = trackAPI.useSearchTracksQuery(query)
+   const { data: searchedTracks, isFetching: isSearching } = trackAPI.useSearchTracksQuery(query)
 
    //use debounce to prevent request on every change
    const debouncedQuery = useDebounce(query, 500)
@@ -36,6 +37,7 @@ const TracksPage: React.FC = () => {
       refetch()
    }, [])
 
+
    return (
       <MainLayout title="Music platform - tracks">
          <>
@@ -52,8 +54,13 @@ const TracksPage: React.FC = () => {
                <Input
                   value={query}
                   onChange={search}
+                  placeholder='Search track...'
+                  style={{ marginBottom: 10 }}
                />
-               <TrackList tracks={actualTracks} />
+               {isTracksFetching || isSearching
+                  ? <Loader />
+                  : <TrackList tracks={actualTracks} />
+               }
             </Card>
          </>
       </MainLayout>

@@ -4,6 +4,7 @@ import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { trackAPI } from "services/TrackService"
 import { IComment, ITrack } from "types/track"
+import { checkSrc } from "utils/checkSrc"
 
 type Props = {
    track: ITrack
@@ -28,6 +29,8 @@ const TrackPage: React.FC<Props> = ({ track: serverTrack }) => {
       }
 
       await createComment(comment)
+      username.clearValue()
+      commentText.clearValue()
    }
 
    useEffect(() => {
@@ -38,6 +41,11 @@ const TrackPage: React.FC<Props> = ({ track: serverTrack }) => {
 
    }, [data])
 
+   {/*api is deploed on heroku, so static folder(with pictures and audio) is cleared after short time*/ }
+   {/*so, I add to db outer links to demonstrate how player works*/ }
+   {/*this finction check is it outer src*/ }
+   const src = checkSrc(track.picture)
+
    return (
       <div>
          <Button onClick={() => router.push('/tracks')} style={{ marginBottom: 10 }}>To list</Button>
@@ -46,7 +54,7 @@ const TrackPage: React.FC<Props> = ({ track: serverTrack }) => {
             <Row style={{ marginBottom: 30 }}>
                <Col style={{ marginRight: 20 }}>
                   <div style={{ height: 200, width: 200 }}>
-                     <img src={'https://music-platform-api.herokuapp.com/' + track?.picture} style={{ width: '100%' }} />
+                     <img src={src} style={{ width: '100%' }} />
                   </div>
                </Col>
                <Col>

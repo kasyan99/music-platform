@@ -19,7 +19,7 @@ const TrackCreate: React.FC = () => {
 
    const router = useRouter()
 
-   const [createPost, { }] = trackAPI.useCreateTrackMutation()
+   const [createPost, { isLoading }] = trackAPI.useCreateTrackMutation()
 
    const onSubmit = () => {
       if (picture && audio) {
@@ -43,6 +43,7 @@ const TrackCreate: React.FC = () => {
             secondContent={<FileUpload accept="image/*" setFile={setPicture} file={picture} />}
             thirdContent={<FileUpload accept="audio/*" setFile={setAudio} file={audio} />}
             onSubmit={onSubmit}
+            isLoading={isLoading}
          />
       </Card>
    </MainLayout>

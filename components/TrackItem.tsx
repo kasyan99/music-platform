@@ -5,6 +5,7 @@ import { useRouter } from "next/router"
 import React from "react"
 import { playerSlice } from "store/reducers/playerSlice"
 import { ITrack } from "types/track"
+import { checkSrc } from "utils/checkSrc"
 import s from '../styles/TrackItem.module.scss'
 
 type Props = {
@@ -24,6 +25,11 @@ const TrackItem: React.FC<Props> = ({ track, active = true }) => {
       dispatch(playTrack())
    }
 
+   {/*api is deploed on heroku, so static folder(with pictures and audio) is cleared after short time*/ }
+   {/*so, I add to db outer links to demonstrate how player works*/ }
+   {/*this finction check is it outer src*/ }
+   const src = checkSrc(track.picture)
+
    return (
       <Col span={24} className={s.track}>
          <Card onClick={() => router.push(`/tracks/${track._id}`)} data-testid='TrackItem'>
@@ -38,14 +44,11 @@ const TrackItem: React.FC<Props> = ({ track, active = true }) => {
                      className={s.btn}
                      onClick={play}
                   />
-                  <img src={'https://music-platform-api.herokuapp.com/' + track.picture} alt={track.name} className={s.img} />
+                  <img src={src} alt={track.name} className={s.img} />
                   <Row style={{ display: 'inline-flex' }} >
                      <Col span={24}><Typography.Title level={3} style={{ margin: 0, marginBottom: 5 }}>{track.name}</Typography.Title></Col>
                      <Col span={24}>{track.artist}</Col>
                   </Row>
-               </Col>
-               <Col>
-                  {active && <span>02:42/03:22</span>}
                </Col>
             </Row>
          </Card>

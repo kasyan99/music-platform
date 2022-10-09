@@ -1,17 +1,19 @@
 import { Button, Card, message, Steps } from 'antd';
 import React, { useState } from 'react';
 import s from '../styles/create.module.scss'
+import Loader from './Loader';
 const { Step } = Steps;
 
 type Props = {
   firstContent: JSX.Element
   secondContent: JSX.Element
   thirdContent: JSX.Element
-  onSubmit: () => void
+  onSubmit: () => void,
+  isLoading?: boolean
 }
 
 
-const StepWrapper: React.FC<Props> = ({ firstContent, secondContent, thirdContent, onSubmit }) => {
+const StepWrapper: React.FC<Props> = ({ firstContent, secondContent, thirdContent, onSubmit, isLoading }) => {
   const steps = [
     {
       title: 'Track info',
@@ -70,6 +72,9 @@ const StepWrapper: React.FC<Props> = ({ firstContent, secondContent, thirdConten
             Previous
           </Button>
         )}
+        {isLoading &&
+          <Loader />
+        }
       </div>
     </>
   );
