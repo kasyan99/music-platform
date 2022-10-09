@@ -24,8 +24,8 @@ const MainLayout: React.FC<Props> = ({ children, title, description, keywords })
          <meta name='keywords' content={keywords || "Music, track"} />
          <meta name='viewport' content='width=device-width, initial-scale=1' />
       </Head>
-      <Layout style={{ minHeight: '100%' }}>
-         <Header>
+      <Layout style={{ minHeight: '100%' }} >
+         <Header style={{ position: 'fixed', top: 0, right: 0, left: 0, zIndex: 101 }}>
             <div className='container'>
                <Menu
                   theme="dark"

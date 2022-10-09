@@ -10,6 +10,9 @@
    background-color: #d3d3d3;
 }
 
+.info{
+  margin-right: 0; 
+}
 .progress{
    width: 100px;
 }
@@ -45,7 +48,6 @@
    .label{
          font-size: 16px;
       margin: 0;
-
    }
 
    .value,
@@ -62,5 +64,7 @@
    .label{
       font-size: 12px;
    }
-   
+   .info{
+      margin-right: 100px; 
+    }
 }

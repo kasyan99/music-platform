@@ -86,7 +86,7 @@ const Player: React.FC = () => {
    return (<div className={s.player} >
       <div className="container">
          <Row align="middle" justify="space-between" className={s.container}>
-            <Col>
+            <Col className={s.info}>
                <Row align="middle" justify="space-between">
                   <Col style={{ marginRight: 10 }}>
                      <Button shape="circle"
