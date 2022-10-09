@@ -85,7 +85,7 @@ const Player: React.FC = () => {
 
    return (<div className={s.player} >
       <div className="container">
-         <Row align="middle" justify="space-between" style={{ width: 920 }}>
+         <Row align="middle" justify="space-between" className={s.container}>
             <Col>
                <Row align="middle" justify="space-between">
                   <Col style={{ marginRight: 10 }}>
@@ -100,10 +100,9 @@ const Player: React.FC = () => {
                      />
                   </Col>
                   <Col>
-
                      <Row style={{ display: 'inline-flex' }} >
-                        <Col span={24}><Typography.Title level={3} style={{ margin: 0, marginBottom: 5 }}>{active?.name}</Typography.Title></Col>
-                        <Col span={24}>{active?.artist}</Col>
+                        <Col span={24}><h3 style={{ margin: 0, marginBottom: 5 }} className={s.label}>{active?.name}</h3></Col>
+                        <Col span={24}><p className={s.text}>{active?.artist}</p></Col>
                      </Row>
                   </Col>
                </Row>

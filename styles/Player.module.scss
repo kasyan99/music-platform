@@ -7,5 +7,60 @@
    display: flex;
    align-items: center;
    padding: 20;
-   background-color: #00152921;
+   background-color: #d3d3d3;
+}
+
+.progress{
+   width: 100px;
+}
+.container{
+   width: 920px
+}
+
+.label{
+      font-size: 24px;
+}
+
+.value,
+.text{
+   font-size: 14px;
+}
+
+
+@media (max-width: 941px){
+   .container{
+      width: 720px
+   }
+   
+   
+}
+
+@media (max-width: 741px){
+   .container{
+      width: 520px
+   }
+
+   
+
+   .label{
+         font-size: 16px;
+      margin: 0;
+
+   }
+
+   .value,
+   .text{
+      font-size: 12px;
+      margin: 0;
+   }
+}
+
+@media (max-width: 541px){
+   .container{
+      width: 350px
+   }
+   .label{
+      font-size: 12px;
+   }
+   
 }

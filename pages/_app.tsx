@@ -39,7 +39,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   }, [router])
   return <Provider store={store}>
     {isLoading &&
-      <Progress percent={100} status="active" showInfo={false} style={{ margin: 0, padding: 0 }} strokeLinecap='square' />
+      <Progress percent={100} status="active" showInfo={false} style={{ position: 'fixed', top: 50, left: 0, right: 0, zIndex: 100 }} strokeLinecap='square' />
     }
     <Component {...pageProps} />
   </Provider>

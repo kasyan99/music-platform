@@ -1,5 +1,5 @@
 import React from "react"
-
+import s from '../styles/Player.module.scss'
 type Props = {
    left: number
    right: number
@@ -9,6 +9,7 @@ type Props = {
 
 const TrackProgress: React.FC<Props> = ({ left, right, onChange, time = false }) => {
 
+   //calculate current track time
    const roundRight = Math.round(right)
    const roundLeft = Math.round(left)
 
@@ -18,6 +19,7 @@ const TrackProgress: React.FC<Props> = ({ left, right, onChange, time = false })
    const leftSeconds = roundLeft % 60
    const leftMinutes = (roundLeft - leftSeconds) / 60
 
+   //provide foramt 00:00
    const displayedLeftSeconds = leftSeconds < 10 ? '0' + leftSeconds : leftSeconds
    const displayedLeftMinutes = leftMinutes < 10 ? '0' + leftMinutes : leftMinutes
 
@@ -33,12 +35,13 @@ const TrackProgress: React.FC<Props> = ({ left, right, onChange, time = false })
             value={left}
             onChange={onChange}
             data-testid='progress'
+            className={s.progress}
          />
          {!time &&
-            <div>{left}/{right}</div>
+            <div className={s.value}>{left}/{right}</div>
          }
          {time &&
-            <div>{displayedLeftMinutes}:{displayedLeftSeconds}/{displayedRightMinutes}:{displayedRightSeconds}</div>
+            <div className={s.value}>{displayedLeftMinutes}:{displayedLeftSeconds}/{displayedRightMinutes}:{displayedRightSeconds}</div>
          }
       </div>
    )
